@@ -1,16 +1,25 @@
-import { Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Layout from './components/Layout';
+import PageNotFound from './pages/PageNotFound';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import About from './pages/About';
 
-import Navbar from './components/Navbar';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <PageNotFound />,
+    children: [
+      { path: '', element: <Home /> },
+      { path: 'login', element: <Login /> },
+      { path: 'about', element: <About /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div>
-      <Navbar />
-      <main className='container pt-5'>
-        <Outlet />
-      </main>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
