@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import HamburgerIcon from '../assets/bars-3.svg';
 import CloseIcon from '../assets/x-mark.svg';
