@@ -1,11 +1,29 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import AuthService from '../auth/AuthService'; // Correct import of AuthService as an instance
 import HamburgerIcon from '../assets/bars-3.svg';
 import CloseIcon from '../assets/x-mark.svg';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Check if user is authenticated
+  useEffect(() => {
+    setIsAuthenticated(AuthService.loggedIn()); // Call loggedIn() method on AuthService instance
+  }, []);
+
+  // Logout function using AuthService
+  const handleLogout = () => {
+    AuthService.logout(); // Call logout() method on AuthService instance
+    setIsAuthenticated(false);
+    navigate('/login');
+  };
+
+  // Check if the current route is guarded and not the home page
+  const isGuardedRoute = isAuthenticated && location.pathname !== '/';
 
   return (
     <nav className="relative">
@@ -35,17 +53,18 @@ export default function Navigation() {
           isMenuOpen ? 'block' : 'hidden'
         } absolute top-full right-0 w-32 md:w-auto bg-gray-900 dark:bg-gray-800 md:flex md:space-x-2 md:static transition-all ease-in-out z-50 rounded-md shadow-lg`}
       >
-        <li>
-          <Link
-            to="/"
-            className={`block py-2 px-4 transition-colors duration-300 ${
-              location.pathname === '/' ? 'text-blue-500 underline' : 'hover:bg-blue-500 hover:text-white'
-            }`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Home
-          </Link>
-        </li>
+        {/* Conditionally Render "Home" Link for Authenticated Users on Guarded Pages */}
+        {isGuardedRoute && (
+          <li>
+            <Link
+              to="/"
+              className="block py-2 px-4 transition-colors duration-300 hover:bg-blue-500 hover:text-white"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </Link>
+          </li>
+        )}
         <li>
           <Link
             to="/about"
@@ -58,15 +77,24 @@ export default function Navigation() {
           </Link>
         </li>
         <li>
-          <Link
-            to="/login"
-            className={`block py-2 px-4 transition-colors duration-300 ${
-              location.pathname === '/login' ? 'text-blue-500 underline' : 'hover:bg-blue-500 hover:text-white'
-            }`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Login
-          </Link>
+          {isAuthenticated ? (
+            <button
+              onClick={handleLogout}
+              className="block py-2 px-4 transition-colors duration-300 hover:bg-blue-500 hover:text-white"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className={`block py-2 px-4 transition-colors duration-300 ${
+                location.pathname === '/login' ? 'text-blue-500 underline' : 'hover:bg-blue-500 hover:text-white'
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Login
+            </Link>
+          )}
         </li>
       </ul>
     </nav>
