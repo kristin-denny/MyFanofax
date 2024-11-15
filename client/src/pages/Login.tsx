@@ -1,7 +1,70 @@
 import { useState } from 'react';
+import createUser from '../api/userAPI';
+import Auth from '../auth/AuthService';
 
 export default function Portfolio() { // Rename to Login
   const [isLogin, setIsLogin] = useState(true);
+  const [values, setValues] = useState({
+    username: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const [error, setError] = useState("");
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    
+
+    // Check if fields are filled
+    if (!values.username || !values.password || !values.confirmPassword) {
+      setError("All fields are required.");
+      return;
+    }
+
+    // Check message length
+    if (values.password !== values.confirmPassword) {
+      setError("Confirm password must match!");
+      return;
+    }
+
+    // If validation passes, clear error message
+    setError("");
+
+    console.log('Form submitted:', values);
+    
+    // Call backend API to submit form data
+    createUser({ username: values.username, password: values.password })
+
+      .then((data) => {
+        console.log('User created:', data);
+        //data.token should have the JWT token
+        Auth.login(data.token);
+      })
+      .catch((error) => {
+        console.error('Error creating user:', error);
+        setError("Username already exists.");
+      });
+
+
+    // Clear form fields after submission
+    setValues({
+      username: '',
+      password: '',
+      confirmPassword: ''
+    });
+
+  }
+
+  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const key = e.target.name;
+    const value = e.target.value;
+
+    setValues(values => ({
+      ...values,
+      [key]: value,
+    }));
+  }
 
   return ( // Login Form UI with conditional rendering
     <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
@@ -20,7 +83,10 @@ export default function Portfolio() { // Rename to Login
               <label className="block text-gray-700">Username</label>
               <input
                 type="text"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="username"
+                value={values.username}
+                onChange={handleOnChange}
+                className="w-full text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your username"
                 required
               />
@@ -29,7 +95,10 @@ export default function Portfolio() { // Rename to Login
               <label className="block text-gray-700">Password</label>
               <input
                 type="password"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="password"
+                value={values.password}
+                onChange={handleOnChange}
+                className="w-full text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your password"
                 required
               />
@@ -43,22 +112,16 @@ export default function Portfolio() { // Rename to Login
           </form>
         ) : (
           // Sign Up Form
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700">Username</label>
               <input
                 type="text"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="username"
+                value={values.username}
+                onChange={handleOnChange}
+                className="w-full text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Choose a username"
-                required
-              />
-            </div>
-            <div>   {/* Email Input */}
-              <label className="block text-gray-700">Email</label>
-              <input
-                type="email"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your email"
                 required
               />
             </div>
@@ -66,7 +129,10 @@ export default function Portfolio() { // Rename to Login
               <label className="block text-gray-700">Password</label>
               <input
                 type="password"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="password"
+                value={values.password}
+                onChange={handleOnChange}
+                className="w-full text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Create a password"
                 required
               />
@@ -75,7 +141,10 @@ export default function Portfolio() { // Rename to Login
               <label className="block text-gray-700">Confirm Password</label>
               <input
                 type="password"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="confirmPassword"
+                value={values.confirmPassword}
+                onChange={handleOnChange}
+                className="w-full text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Confirm your password"
                 required
               />
@@ -88,6 +157,8 @@ export default function Portfolio() { // Rename to Login
             </button>
           </form>
         )}
+
+{error && <p className="text-sm font-thin text-red-500 text-center mb-4">{error}</p>}
 
         {/* Toggle Login/Signup */}
         <p className="text-center text-gray-600">
