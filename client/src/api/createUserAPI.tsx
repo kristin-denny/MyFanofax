@@ -1,10 +1,6 @@
-export interface UserInfo {
-  username: string | null;
-  password: string | null;
-}
+import UserInfoType  from "../interfaces/UserInfoType";
 
-
-export default async function createUser(userInfo: UserInfo) {
+export default async function createUser(userInfo: UserInfoType) {
 
   try {
     const response = await fetch('/api/users', {
