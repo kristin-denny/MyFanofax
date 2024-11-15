@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import getUser from '../api/getUserAPI';
+import loginUser from '../api/loginUserAPI';
 import Auth from '../auth/AuthService';
 
 export default function LoginForm() {
@@ -26,7 +26,7 @@ export default function LoginForm() {
 
 
         // Call backend API to submit form data
-        getUser({ username: values.username, password: values.password })
+        loginUser({ username: values.username, password: values.password })
     
           .then((data) => {
             console.log('User login:', data);
