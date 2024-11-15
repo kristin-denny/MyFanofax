@@ -17,7 +17,10 @@ router.post('/', async (req: Request, res: Response) => {
       const newUser = await User.create({ username, password });
       const secretKey = process.env.JWT_SECRET_KEY || '';
       const token = jwt.sign({ username }, secretKey, { expiresIn: '48h' });
-      const returnData = [newUser, token];
+      const returnData = {
+        user: newUser, 
+        token: token
+      };
       res.status(201).json(returnData);
     }
   } catch (error: any) {
