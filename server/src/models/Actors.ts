@@ -25,7 +25,7 @@ export class Actor
   public headshotURL!: string;
 
   public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+ 
 
   
 }

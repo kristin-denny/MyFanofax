@@ -20,7 +20,7 @@ export class User
   public password!: string;
 
   public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  
 
   // Hash the password before saving the user
   public async setPassword(password: string) {
