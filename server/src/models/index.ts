@@ -9,7 +9,7 @@ const Actor = ActorFactory(sequelize);
 User.hasMany(Actor, {
     foreignKey: 'userId',
     onDelete: 'CASCADE',
-    as: 'actors', // Use plural for clarity
+    as: 'actors', 
   });
   
   Actor.belongsTo(User, {
