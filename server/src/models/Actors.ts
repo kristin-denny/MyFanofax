@@ -54,14 +54,14 @@ export function ActorFactory(sequelize: Sequelize): typeof Actor {
         allowNull: false,
       },
       userId: {
-        // Define the foreign key column
+       
         type: DataTypes.INTEGER,
-        allowNull: true, // Optional field in this case
+        allowNull: true, 
         references: {
-          model: 'users', // Name of the related table
-          key: 'userId',  // Key in the related table
+          model: 'users', 
+          key: 'userId', 
         },
-        onDelete: 'CASCADE', // Match the association behavior
+        onDelete: 'CASCADE', 
       },
     },
     {
