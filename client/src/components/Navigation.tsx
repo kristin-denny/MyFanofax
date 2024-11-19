@@ -22,8 +22,8 @@ export default function Navigation() {
     navigate('/login');
   };
 
-  // Check if the current route is guarded and not the home page
-  const isGuardedRoute = isAuthenticated && location.pathname !== '/';
+  // Check if the current route is guarded
+  const isGuardedRoute = isAuthenticated;
 
   return (
     <nav className="relative">
@@ -58,7 +58,9 @@ export default function Navigation() {
           <li>
             <Link
               to="/"
-              className="block py-2 px-4 transition-colors duration-300 hover:bg-blue-500 hover:text-white"
+              className={`block py-2 px-4 transition-colors duration-300 ${
+                location.pathname === '/' ? 'text-blue-500 underline' : 'hover:bg-blue-500 hover:text-white'
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               Home
