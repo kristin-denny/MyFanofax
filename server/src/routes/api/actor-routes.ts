@@ -1,8 +1,9 @@
 import express from 'express';
 import type { Request, Response } from 'express';
 import {  Actor } from '../../models/index.js';
+
 import getActor from '../../service/actorService.js'
-// User,
+
 
 const router = express.Router();
 //search actor from database
@@ -52,6 +53,7 @@ router.delete('/', async (req: Request, res: Response) => {
 });
 
 //get users actors
+
 router.get('/', async (req: Request, res: Response) => {
     const {userId} = req.body;
     try {
@@ -64,5 +66,6 @@ router.get('/', async (req: Request, res: Response) => {
         res.status(500).json({ message: error.message });
     }
 });
+
 
 export { router as actorRouter };

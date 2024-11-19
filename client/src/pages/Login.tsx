@@ -2,7 +2,7 @@ import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
 
-export default function Login() { // Rename to Login
+export default function Login() { 
   const [isLogin, setIsLogin] = useState(true);
 
   return ( // Login Form UI with conditional rendering
