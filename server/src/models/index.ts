@@ -6,12 +6,15 @@ import { ActorFactory } from './Actors.js';
 const User = UserFactory(sequelize);
 const Actor = ActorFactory(sequelize);
 
-User.hasMany(Actor,{
+User.hasMany(Actor, {
+    foreignKey: 'userId',
     onDelete: 'CASCADE',
-    as: 'actor',
-});
+    as: 'actors', // Use plural for clarity
+  });
+  
+  Actor.belongsTo(User, {
+    foreignKey: 'userId',
+  });
 
-Actor.belongsTo(User);
 
-
-export { User };
+export { User, Actor };

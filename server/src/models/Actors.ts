@@ -1,14 +1,14 @@
-import { DataTypes,  type ForeignKey, type Sequelize, Model, type Optional } from 'sequelize';
-import type { User } from './User.js';
+import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
+
 
 //actor interface
 interface actorAttributes {
   actorId: number; 
-  userID: ForeignKey<User['userId']>;
   actorName: string;
   movies: string;
   comments: string;
   headshotURL: string;
+  userId?: number;
 }
 
 interface actorCreationAttributes extends Optional<actorAttributes, 'actorId'> {}
@@ -18,13 +18,12 @@ export class Actor
   implements actorAttributes
 {
   public actorId!: number;
-  public userID!: ForeignKey<User['userId']>;
   public actorName!: string;
   public movies!: string;
   public comments!: string;
   public headshotURL!: string;
-
-  public readonly createdAt!: Date;
+  public userId?: number;
+ 
  
 
   
@@ -54,10 +53,22 @@ export function ActorFactory(sequelize: Sequelize): typeof Actor {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      userId: {
+        // Define the foreign key column
+        type: DataTypes.INTEGER,
+        allowNull: true, // Optional field in this case
+        references: {
+          model: 'users', // Name of the related table
+          key: 'userId',  // Key in the related table
+        },
+        onDelete: 'CASCADE', // Match the association behavior
+      },
     },
     {
       tableName: 'actors',
       sequelize,
+      timestamps: false,
+      modelName: 'actors',
       hooks: {
        
       },
