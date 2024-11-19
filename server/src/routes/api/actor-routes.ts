@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { Actor } from '../../models/index.js';
-import { User } from '../../models/index.js';
+//import { Actor } from '../../models/index.js';
+//import { User } from '../../models/index.js';
 import getActor from '../../service/actorService.js'
 
 const router = express.Router();
@@ -24,15 +24,15 @@ router.post('/', async (req: Request, res: Response) => {
 //delete actor
 
 //get users actors
-router.get('/', async (req: Request, res: Response) => {
-    try {
-      const actor = await User.findAll({
+// router.get('/', async (req: Request, res: Response) => {
+//     try {
+//       const actor = await User.findAll({
         
-      });
-      res.json(actor);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
+//       });
+//       res.json(actor);
+//     } catch (error: any) {
+//       res.status(500).json({ message: error.message });
+//     }
+//   });
 
 export { router as actorRouter };

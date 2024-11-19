@@ -3,7 +3,7 @@ import User  from "../interfaces/User";
 export default async function createUser(userInfo: User) {
 
   try {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

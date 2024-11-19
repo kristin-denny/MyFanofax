@@ -15,6 +15,7 @@ export default function SearchForm() {
           setError("All fields are required");
           return;
         }
+        console.log('Name Formsubmit:', name);
     
         // If validation passes, clear error message
         setError("");

@@ -3,6 +3,7 @@ import Auth from '../auth/AuthService';
 type ActorName = string;
 
 export default async function searchActor(actorName: ActorName) {
+  console.log('Name From front-end api:', actorName);
 
   try {
     
@@ -12,7 +13,7 @@ export default async function searchActor(actorName: ActorName) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${Auth.getToken()}`,
       },
-      body: JSON.stringify(actorName),
+      body: JSON.stringify({actorName: actorName}),
     });
 
     const data = await response.json();
