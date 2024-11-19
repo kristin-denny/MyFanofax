@@ -30,8 +30,6 @@ export default function SignupForm() {
     
         // If validation passes, clear error message
         setError("");
-    
-        console.log('Form submitted:', values);
         
         // Call backend API to submit form data
         createUser({ username: values.username, password: values.password })

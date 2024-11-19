@@ -1,0 +1,1 @@
+//This componet is used to display the favorite actors of the user - list of actors that the user has marked as favorite
