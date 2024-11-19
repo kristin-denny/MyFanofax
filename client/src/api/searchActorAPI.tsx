@@ -5,8 +5,8 @@ type ActorName = string;
 export default async function searchActor(actorName: ActorName) {
 
   try {
-    //note this api rt is not yet implemented
-    const response = await fetch('/api/actor', {
+    
+    const response = await fetch('/api/actors', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

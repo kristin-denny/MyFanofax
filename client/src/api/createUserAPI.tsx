@@ -1,6 +1,6 @@
-import UserInfoType  from "../interfaces/UserInfoType";
+import User  from "../interfaces/User";
 
-export default async function createUser(userInfo: UserInfoType) {
+export default async function createUser(userInfo: User) {
 
   try {
     const response = await fetch('/api/users', {
