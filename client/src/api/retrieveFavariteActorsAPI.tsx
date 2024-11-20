@@ -10,7 +10,7 @@ export default async function getFavotieActors(userId: number) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${Auth.getToken()}`,
       },
-      body: JSON.stringify(userId),
+      body: JSON.stringify({ userId }),
     });
 
     const data = await response.json();

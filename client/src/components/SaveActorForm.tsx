@@ -14,9 +14,7 @@ export default function SaveActorForm() {
         // Call backend API to add actor to favorites
         saveActor(actor)
           .then((data) => {
-            //should receive all favorite actors for this user
-            console.log('Actor backend:', data);
-
+            
             //update the actor context
             setFavoriteActors(data);
 
@@ -25,7 +23,7 @@ export default function SaveActorForm() {
             navigate(`/`);
           })
           .catch((error) => {
-            console.error('Actor already in your favorites!:', error);
+            console.error('Issues storing actor to favorite!:', error);
           });
     
       }

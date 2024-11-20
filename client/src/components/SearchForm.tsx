@@ -22,8 +22,6 @@ export default function SearchForm() {
 
     searchActor(name)
       .then((data) => {
-        //debugger;
-        console.log('Actor data from backend:', data);
 
         // Store actor data in context
         setActor(data);

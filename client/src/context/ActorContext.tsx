@@ -10,16 +10,16 @@ interface ActorContextType {
 
 // Create the context with a default value
 export const ActorContext = createContext<ActorContextType>({
-  actor: {},
+  actor: {}, 
   setActor: () => {},
-  favoriteActors: {},
+  favoriteActors: [], 
   setFavoriteActors: () => {},
 });
 
 // The provider component
 export const ActorProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [actor, setActor] = useState({});
-  const [favoriteActors, setFavoriteActors] = useState({});
+  const [favoriteActors, setFavoriteActors] = useState<any[]>([]);
 
   return (
     <ActorContext.Provider value={{ actor, setActor, favoriteActors, setFavoriteActors }}>

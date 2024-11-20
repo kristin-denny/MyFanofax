@@ -5,10 +5,10 @@ export default async function saveActor(actor: any) {
     //create a new actor obj for backend
     const actorObj = {
       actorName: actor.actorName,
-      movies: JSON.stringify(actor.movies), // do i need this?
-      comments: "", // No comments for now - need to add comments feature
+      movies: "actor.movies", // do i need to stringify this?
+      comments: "comment", // No comments for now - need to add comments feature
       headshotURL: actor.headshotURL,
-      userID: 1 // Hardcoded for now - need actual user ID
+      userId: localStorage.getItem("userId") || "0" 
     };
 
 
