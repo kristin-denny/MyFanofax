@@ -1,7 +1,7 @@
 export default async function createUser(userInfo: any) {
 
   try {
-    const response = await fetch('/auth/signup', {
+    const response = await fetch('/auth/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

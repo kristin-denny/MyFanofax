@@ -23,8 +23,6 @@ export default async function saveActor(actor: any) {
       body: JSON.stringify(actorObj),
     });
 
-    
-     //should receive all favorite actors for this user
     const data = await response.json();
 
     if (!response.ok) {

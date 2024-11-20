@@ -35,7 +35,8 @@ export default function SignupForm() {
         createUser({ username: values.username, password: values.password })
     
           .then((data) => {
-            console.log('User created:', data);
+            //save user to local storage
+            localStorage.setItem('userId', data.user.userId.toString());
             //data.token should have the JWT token
             Auth.login(data.token);
           })

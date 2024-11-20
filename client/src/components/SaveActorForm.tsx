@@ -6,7 +6,7 @@ import { ActorContext } from '../context/ActorContext';
 export default function SaveActorForm() {
     const navigate = useNavigate();
     const { actor } = useContext(ActorContext); // Retrieve actor data from context
-    const { setFavoriteActor } = useContext(ActorContext); // Access the context function
+    const { setFavoriteActors } = useContext(ActorContext); // Access the context function
 
       function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -18,7 +18,7 @@ export default function SaveActorForm() {
             console.log('Actor backend:', data);
 
             //update the actor context
-            setFavoriteActor(data);
+            setFavoriteActors(data);
 
 
             //redirect to home page

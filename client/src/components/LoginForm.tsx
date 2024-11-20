@@ -30,6 +30,8 @@ export default function LoginForm() {
     
           .then((data) => {
             console.log('User login:', data);
+            //save user to local storage
+            localStorage.setItem('userId', data.user.userId.toString());
             //data.token should have the JWT token
             Auth.login(data.token);
           })
