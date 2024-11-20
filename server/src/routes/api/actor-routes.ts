@@ -7,7 +7,7 @@ import getActor from '../../service/actorService.js'
 
 const router = express.Router();
 //search actor from database
-router.post('/', async (req: Request, res: Response) => {
+router.post('/find', async (req: Request, res: Response) => {
     const { actorName } = req.body;
     try {
         const actor = await getActor(actorName);
@@ -54,7 +54,7 @@ router.delete('/', async (req: Request, res: Response) => {
 
 //get users actors
 
-router.get('/', async (req: Request, res: Response) => {
+router.post('/all', async (req: Request, res: Response) => {
     const {userId} = req.body;
     try {
         const actors = await Actor.findAll({
