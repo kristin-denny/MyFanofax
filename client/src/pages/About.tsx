@@ -5,19 +5,19 @@ const users = [
   {
     username: 'Kristin Denny',
     github: 'https://github.com/kristin-denny',
-    email: 'kristin.denny@example.com',
+    email: 'kristingdenny@gmail.com',
     image: 'https://via.placeholder.com/100', // Replace with actual image URL
   },
   {
     username: 'Jose W Rivas',
     github: 'https://github.com/williamscodigo',
-    email: 'jose.rivas@example.com',
+    email: 'williamscodigo@gmail.com',
     image: 'https://via.placeholder.com/100', // Replace with actual image URL
   },
   {
     username: 'Michael Wahba',
     github: 'https://github.com/mwahba624',
-    email: 'michael.wahba@example.com',
+    email: 'mwahba624@gmail.com',
     image: 'https://via.placeholder.com/100', // Replace with actual image URL
   },
 ];
