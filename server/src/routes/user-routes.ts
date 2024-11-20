@@ -2,6 +2,7 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import { User } from '../models/index.js';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 const router = express.Router();
 
@@ -28,14 +29,22 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/:username', async (req: Request, res: Response) => {
-  const { username } = req.params;
+router.get('/login', async (req: Request, res: Response) => {
+  const { username, password } = req.body;
   try {
     const user = await User.findOne({
       where: { username: username }
     });
     if (user) {
-      res.json(user);
+      const passwordCheck = await bcrypt.compare(password, user.password);
+      if (!passwordCheck) {
+        res.status(401).json({ message: 'Authentication failed' });
+      }
+    
+      const secretKey = process.env.JWT_SECRET_KEY || '';
+    
+      const token = jwt.sign({ username }, secretKey, { expiresIn: '48h' });
+      res.json({ user, token });
     } else {
       res.status(404).json({ message: 'User not found' });
     }
