@@ -10,7 +10,7 @@ export default function ActorSearchResult() {
     <section className="my-6 w-full grid grid-cols-1 justify-items-center">
       <h1 className="text-3xl font-bold mb-4 text-center md:text-left">Actor Search Result</h1>
       <ActorCard actorName={actor.actorName} actorImage={actor.headshotURL} />
-      <h2 className="text-2xl font-bold mt-8 mb-4 text-center md:text-left">Actor Most Popular Movies</h2>
+      <h2 className="text-xl font-bold mt-8 mb-4 text-center md:text-left">Actor Popular Movies</h2>
       {actor.movies.map((movie: any, index: any) => (
         <MovieCard
           key={index} // Use a unique key for each item, such as movie ID if available
