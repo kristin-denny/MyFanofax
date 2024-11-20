@@ -4,7 +4,7 @@ export default async function searchActor(actorName: string) {
 
   try {
     
-    const response = await fetch('/api/actors', {
+    const response = await fetch('/api/actors/find', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

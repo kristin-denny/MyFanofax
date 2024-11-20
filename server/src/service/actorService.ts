@@ -18,7 +18,8 @@ interface Actor {
 
 const parseActorData = (actorData: any) => {
     const firstActor = actorData.results[0];
-    console.log(firstActor);
+    //debugger;
+    //console.log(firstActor);
     const actor: Actor = {
         actorName: firstActor.name,
         movies: [
