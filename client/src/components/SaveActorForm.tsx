@@ -6,24 +6,26 @@ import { ActorContext } from '../context/ActorContext';
 export default function SaveActorForm() {
     const navigate = useNavigate();
     const { actor } = useContext(ActorContext); // Retrieve actor data from context
+    const { setFavoriteActor } = useContext(ActorContext); // Access the context function
 
       function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         // Call backend API to add actor to favorites
-        console.log('Actor obj before backend/save:', actor);
         saveActor(actor)
-    
           .then((data) => {
-            console.log('Actor added to Favorites after backend:', data);
+            //should receive all favorite actors for this user
+            console.log('Actor backend:', data);
+
             //update the actor context
+            setFavoriteActor(data);
 
 
             //redirect to home page
             navigate(`/`);
           })
           .catch((error) => {
-            console.error('Error retreiving user:', error);
+            console.error('Actor already in your favorites!:', error);
           });
     
       }

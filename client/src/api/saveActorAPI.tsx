@@ -5,11 +5,13 @@ export default async function saveActor(actor: any) {
     //create a new actor obj for backend
     const actorObj = {
       actorName: actor.actorName,
-      movies: JSON.stringify(actor.movies), // If stored as string,
-      comments: "",
+      movies: JSON.stringify(actor.movies), // do i need this?
+      comments: "", // No comments for now - need to add comments feature
       headshotURL: actor.headshotURL,
-      userID: 1
+      userID: 1 // Hardcoded for now - need actual user ID
     };
+
+
 
   try {
     const response = await fetch('/api/actors/save', {
@@ -21,16 +23,18 @@ export default async function saveActor(actor: any) {
       body: JSON.stringify(actorObj),
     });
 
+    
+     //should receive all favorite actors for this user
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error('Actor information not retrieved, check network tab!');
+      throw new Error('Information not retrieved, check network tab!');
     }
 
     return data;
   } catch (err) {
-    console.log('Error from actor api: ', err);
-    return Promise.reject('Could not fetch actor info');
+    console.error('Error storing actor to users favorites:', err);
+    return Promise.reject('Error storing actor to users favorites');
   }
   
   }
