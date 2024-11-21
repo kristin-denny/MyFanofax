@@ -22,9 +22,7 @@ export default function SearchForm() {
 
     searchActor(name)
       .then((data) => {
-
-        console.log('data from searchActor:', data);
-
+        console.log('Actor data:', data);
         // Store actor data in context
         setActor(data);
 

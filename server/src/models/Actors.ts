@@ -42,7 +42,7 @@ export function ActorFactory(sequelize: Sequelize): typeof Actor {
         allowNull: false,
       },
       movies: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(4080),
         allowNull: false,
       },
       comments: {
