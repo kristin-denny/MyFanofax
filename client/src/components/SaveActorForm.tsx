@@ -9,17 +9,15 @@ export default function SaveActorForm() {
     const navigate = useNavigate();
     const { actor } = useContext(ActorContext); // Retrieve actor data from context
     const { favoriteActors, setFavoriteActors } = useContext(ActorContext); // Access the context function
-
+    console.log("save form");
       function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         // Call backend API to add actor to favorites
         saveActor(actor, message)
           .then((data) => {
-            const newData = {...data, movies: JSON.parse(data.movies)};
-            console.log('newData:', newData);
-
-            console.log('data from saveActor:', newData);
+            const newData = {...data, movies: data.movies}; //changed this
+            
 
             //update the actor context
             setFavoriteActors([...favoriteActors, newData]);

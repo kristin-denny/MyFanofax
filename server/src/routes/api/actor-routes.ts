@@ -23,21 +23,19 @@ router.post('/find', async (req: Request, res: Response) => {
 
 //save actor
 router.post('/save', async (req: Request, res: Response) => {
-    const {actorName, movies, comments, headshotURL, userId } = req.body;
-    console.log("REQ.BODY: ", req.body);
-    console.log(actorName, movies, comments, headshotURL, userId);
-    console.log("jSON.MOVIES: ", JSON.stringify(movies));
+    // const {actorName, movies, comments, headshotURL userId} = req.body;
+    // const parsedMovies = movies.map((movieObj: any) => { return JSON.stringify(movieObj) });
+    // console.log("actorName", typeof actorName);
+    // console.log("movies", typeof movies);
+    // console.log("comments", typeof comments);
+    // console.log("headshotURL", typeof headshotURL);
+    // console.log("userId", typeof userId);
     try {
-        const actorData = await Actor.create({
-            actorName: actorName,
-            movies: JSON.stringify(movies),
-            comments: comments,
-            headshotURL: headshotURL,
-            userId:userId
-    });
-        res.status(200).json(actorData);
+        const actorData = await Actor.create(req.body);
+    console.log(actorData);
+       return res.status(200).json(actorData);
     } catch (err) {
-        res.status(400).json(err);
+       return res.status(400).json(err);
     }
 });
 

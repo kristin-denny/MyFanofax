@@ -1,11 +1,11 @@
-import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
+import { DataTypes, Sequelize, Model, type Optional } from 'sequelize';
 
 
 //actor interface
 interface actorAttributes {
   actorId: number; 
   actorName: string;
-  movies: string;
+  movies: JSON[];
   comments: string;
   headshotURL: string;
   userId?: number;
@@ -19,7 +19,7 @@ export class Actor
 {
   public actorId!: number;
   public actorName!: string;
-  public movies!: string;
+  public movies!: JSON[];
   public comments!: string;
   public headshotURL!: string;
   public userId?: number;
@@ -42,7 +42,7 @@ export function ActorFactory(sequelize: Sequelize): typeof Actor {
         allowNull: false,
       },
       movies: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
       },
       comments: {
@@ -69,9 +69,6 @@ export function ActorFactory(sequelize: Sequelize): typeof Actor {
       sequelize,
       timestamps: false,
       modelName: 'actors',
-      hooks: {
-       
-      },
     }
   );
 
