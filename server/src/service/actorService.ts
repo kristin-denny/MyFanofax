@@ -28,25 +28,25 @@ const parseActorData = (actorData: any) => {
                 summary: firstActor.known_for[0].overview,
                 releaseDate: firstActor.known_for[0].release_date,
                 mediaType: firstActor.known_for[0].media_type,
-                posterURL: path.join(`${process.env.IMAGE_BASE_URL}`, `${firstActor.known_for[0].poster_path}`)
+                posterURL: `${process.env.IMAGE_BASE_URL}${firstActor.known_for[0].poster_path}`
             },
             {
                 movieName: firstActor.known_for[1].title,
                 summary: firstActor.known_for[1].overview,
                 releaseDate: firstActor.known_for[1].release_date,
                 mediaType: firstActor.known_for[1].media_type,
-                posterURL: path.join(`${process.env.IMAGE_BASE_URL}`, `${firstActor.known_for[1].poster_path}`)
+                posterURL: `${process.env.IMAGE_BASE_URL}${firstActor.known_for[1].poster_path}`
             },
             {
                 movieName: firstActor.known_for[2].title,
                 summary: firstActor.known_for[2].overview,
                 releaseDate: firstActor.known_for[2].release_date,
                 mediaType: firstActor.known_for[2].media_type,
-                posterURL: path.join(`${process.env.IMAGE_BASE_URL}`, `${firstActor.known_for[2].poster_path}`)
+                posterURL: `${process.env.IMAGE_BASE_URL}${firstActor.known_for[2].poster_path}`
               
             }
         ],
-        headshotURL:  path.join(`${process.env.IMAGE_BASE_URL}`, `${firstActor.profile_path}`),
+        headshotURL:  `${process.env.IMAGE_BASE_URL}${firstActor.profile_path}`,
         
     };
     
