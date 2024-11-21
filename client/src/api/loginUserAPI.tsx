@@ -1,4 +1,6 @@
+
 export default async function loginUser(userInfo: any) {
+
 
   try {
     const response = await fetch('/auth/login', {

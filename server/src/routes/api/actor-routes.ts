@@ -23,8 +23,15 @@ router.post('/find', async (req: Request, res: Response) => {
 
 //save actor
 router.post('/save', async (req: Request, res: Response) => {
+    const {actorName, movies, comments, headshotURL, userId } = req.body;
     try {
-        const actorData = await Actor.create(req.body);
+        const actorData = await Actor.create({
+            actorName: actorName,
+            movies: JSON.stringify(movies),
+            comments: comments,
+            headshotURL: headshotURL,
+            userId:userId
+    });
         res.status(200).json(actorData);
     } catch (err) {
         res.status(400).json(err);
