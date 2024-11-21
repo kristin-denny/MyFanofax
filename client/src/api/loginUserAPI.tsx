@@ -1,6 +1,6 @@
-import  User from "../interfaces/UserInfoType";
 
-export default async function loginUser(userInfo: UserInfoType) {
+export default async function loginUser(userInfo: any) {
+
 
   try {
     const response = await fetch('/auth/login', {

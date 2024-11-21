@@ -1,13 +1,10 @@
 import Auth from '../auth/AuthService';
 
-type ActorName = string;
-
-export default async function searchActor(actorName: ActorName) {
-  console.log('Name From front-end api:', actorName);
+export default async function searchActor(actorName: string) {
 
   try {
     
-    const response = await fetch('/api/actors', {
+    const response = await fetch('/api/actors/find', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

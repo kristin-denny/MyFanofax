@@ -30,14 +30,13 @@ export default function SignupForm() {
     
         // If validation passes, clear error message
         setError("");
-    
-        console.log('Form submitted:', values);
         
         // Call backend API to submit form data
         createUser({ username: values.username, password: values.password })
     
           .then((data) => {
-            console.log('User created:', data);
+            //save user to local storage
+            localStorage.setItem('userId', data.user.userId.toString());
             //data.token should have the JWT token
             Auth.login(data.token);
           })

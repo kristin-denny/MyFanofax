@@ -1,9 +1,7 @@
-import User  from "../interfaces/User";
-
-export default async function createUser(userInfo: User) {
+export default async function createUser(userInfo: any) {
 
   try {
-    const response = await fetch('/auth/signup', {
+    const response = await fetch('/auth/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +18,7 @@ export default async function createUser(userInfo: User) {
     return data;
 
   } catch (err) {
-    console.log('Error from user login: ', err);
+    console.log('Error from user signup: ', err);
     return Promise.reject('Could not fetch user info');
   }
 
