@@ -28,7 +28,7 @@ const parseActorData = (actorData: any) => {
                 summary: firstActor.known_for[0].overview,
                 releaseDate: firstActor.known_for[0].release_date,
                 mediaType: firstActor.known_for[0].media_type,
-                posterURL: path.join(`https://image.tmdb.org/t/p/w300_and_h450_bestv2`, `${firstActor.known_for[0].poster_path}`)
+                posterURL: path.join(`${process.env.IMAGE_BASE_URL}`, `${firstActor.known_for[0].poster_path}`)
             },
             {
                 movieName: firstActor.known_for[1].title,
