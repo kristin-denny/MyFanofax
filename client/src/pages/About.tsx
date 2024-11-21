@@ -1,5 +1,5 @@
 import { FaGithub, FaEnvelope } from 'react-icons/fa';
-import redPanda from '../img/Red.Panda.png';
+import redPanda from '../img/RedPanda.png';
 import wolf from '../img/Wolf.png';
 import blackJaguar from '../img/BlackJaguar.png';
 
