@@ -5,7 +5,7 @@ export default async function saveActor(actor: any) {
     //create a new actor obj for backend
     const actorObj = {
       actorName: actor.actorName,
-      movies: "actor.movies", // do i need to stringify this?
+      movies: actor.movies.join(""), // Convert array to a string
       comments: "comment", // No comments for now - need to add comments feature
       headshotURL: actor.headshotURL,
       userId: localStorage.getItem("userId") || "0" 
