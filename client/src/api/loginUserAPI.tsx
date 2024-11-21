@@ -1,4 +1,4 @@
-import  UserInfoType  from "../interfaces/UserInfoType";
+import  User from "../interfaces/UserInfoType";
 
 export default async function loginUser(userInfo: UserInfoType) {
 

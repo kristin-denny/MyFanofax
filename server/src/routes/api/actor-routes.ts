@@ -7,7 +7,7 @@ import getActor from '../../service/actorService.js'
 
 const router = express.Router();
 //search actor from database
-router.post('/', async (req: Request, res: Response) => {
+router.post('/find', async (req: Request, res: Response) => {
     const { actorName } = req.body;
     try {
         const actor = await getActor(actorName);
@@ -23,8 +23,15 @@ router.post('/', async (req: Request, res: Response) => {
 
 //save actor
 router.post('/save', async (req: Request, res: Response) => {
+    const {actorName, movies, comments, headshotURL, userId } = req.body;
     try {
-        const actorData = await Actor.create(req.body);
+        const actorData = await Actor.create({
+            actorName: actorName,
+            movies: JSON.stringify(movies),
+            comments: comments,
+            headshotURL: headshotURL,
+            userId:userId
+    });
         res.status(200).json(actorData);
     } catch (err) {
         res.status(400).json(err);
@@ -54,7 +61,7 @@ router.delete('/', async (req: Request, res: Response) => {
 
 //get users actors
 
-router.get('/', async (req: Request, res: Response) => {
+router.post('/all', async (req: Request, res: Response) => {
     const {userId} = req.body;
     try {
         const actors = await Actor.findAll({
