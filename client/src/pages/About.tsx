@@ -1,24 +1,26 @@
-
 import { FaGithub, FaEnvelope } from 'react-icons/fa';
+import redPanda from '../img/Red.Panda.png';
+import wolf from '../img/Wolf.png';
+import blackJaguar from '../img/BlackJaguar.png';
 
 const users = [
   {
     username: 'Kristin Denny',
     github: 'https://github.com/kristin-denny',
     email: 'kristingdenny@gmail.com',
-    image: './src/img/Red.Panda.png', 
+    image: redPanda, 
   },
   {
     username: 'Jose W Rivas',
     github: 'https://github.com/williamscodigo',
     email: 'williamscodigo@gmail.com',
-    image: './src/img/Wolf.png', 
+    image: wolf, 
   },
   {
     username: 'Michael Wahba',
     github: 'https://github.com/mwahba624',
     email: 'mwahba624@gmail.com',
-    image: './src/img/BlackJaguar.png', 
+    image: blackJaguar, 
   },
 ];
 
