@@ -11,13 +11,12 @@ export default function Home() {
     
     getFavotieActors(userId)
       .then((data) => {
-        console.log('Favorite actors retrieved from API:', data); // Log API response
-        // Add the favorite actors to the context
+        // Add the favorite actors to the context on first load
         setFavoriteActors(data);
       })
       .catch((err) => console.error('Error retrieving favorite actors', err)); // Handle errors
     
-  }, []); // Dependency array includes favoriteActors
+  }, []); 
   
 
   return (
@@ -28,9 +27,9 @@ export default function Home() {
       <h2 className="mt-8 text-xl font-bold mb-4 text-center md:text-left">My Favorite Actors</h2>
       <div className="flex flex-wrap justify-center md:justify-start">
         
-        {Array.isArray(favoriteActors) && favoriteActors.map((actor: any) => (
+        {Array.isArray(favoriteActors) && favoriteActors.length !== 0 && favoriteActors.map((actor: any) => (
           <ActorDetailsForm key={actor.actorId} actor={actor} />
-        )) || <p className="text-center">No favorite actors found</p>}
+        )) || <p className="text-center">No favorite actors found...</p>}
       </div>
     </section>
   );

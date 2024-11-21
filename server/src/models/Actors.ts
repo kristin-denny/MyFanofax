@@ -42,7 +42,9 @@ export function ActorFactory(sequelize: Sequelize): typeof Actor {
         allowNull: false,
       },
       movies: {
+
         type: DataTypes.ARRAY(DataTypes.JSON),
+
         allowNull: false,
       },
       comments: {

@@ -1,15 +1,21 @@
 import Auth from '../auth/AuthService';
 
 export default async function saveActor(actor: any, message: string) {
+ 
 
-  //create a new actor obj for backend
-  const actorObj = {
-    actorName: actor.actorName,
-    movies: actor.movies, 
-    comments: message || '', // No comments for now - need to add comments feature
-    headshotURL: actor.headshotURL,
-    userId: actor.userId || 0
-  };
+ 
+
+
+    //create a new actor obj for backend
+    const actorObj = {
+      actorName: actor.actorName,
+      movies: actor.movies, // Convert array to a string
+      comments: message || '', // No comments for now - need to add comments feature
+      headshotURL: actor.headshotURL,
+      userId: parseInt(localStorage.getItem('userId') || '0'), 
+    };
+
+
 
 
   try {
