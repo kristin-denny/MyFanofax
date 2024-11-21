@@ -15,7 +15,7 @@ export default function FavoriteActorDetails() {
         <h1 className="text-3xl font-bold mb-4 text-center md:text-left">Favorite Actor Details</h1>
 
         <ActorCard actor={actor} deleteFlag={true} />
-        {(JSON.parse(actor.movies)).map((movie: any, index: any) => (
+        {actor.movies.map((movie: any, index: any) => (
         <MovieCard
           key={index} // Use a unique key for each item, such as movie ID if available
           movieName={movie.movieName}
