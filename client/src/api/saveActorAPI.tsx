@@ -3,16 +3,18 @@ import Auth from '../auth/AuthService';
 export default async function saveActor(actor: any, message: string) {
  
 
-  const stringifiedMovies = JSON.stringify(actor.movies);
+ 
+
 
     //create a new actor obj for backend
     const actorObj = {
       actorName: actor.actorName,
-      movies: stringifiedMovies, // Convert array to a string
+      movies: actor.movies, // Convert array to a string
       comments: message || '', // No comments for now - need to add comments feature
       headshotURL: actor.headshotURL,
       userId: parseInt(localStorage.getItem('userId') || '0'), 
     };
+
 
 
 
@@ -31,11 +33,12 @@ export default async function saveActor(actor: any, message: string) {
     if (!response.ok) {
       throw new Error('Information not retrieved, check network tab!');
     }
-
+    // console.log("in fetch request data:", data);
+    // console.log("in fetch request, response: ", response);
     return data;
   } catch (err) {
     console.error('Error storing actor to users favorites:', err);
     return Promise.reject('Error storing actor to users favorites');
   }
-  
-  }
+
+}

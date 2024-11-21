@@ -12,6 +12,10 @@ app.use(express.static('../client/dist'));
 
 app.use(express.json());
 app.use(routes);
+app.use((req, _res, next) => {
+  console.log(`${req.method} ${req.url}`, req.body);
+  next();
+});
 
 sequelize.sync({ force: forceDatabaseRefresh }).then(() => {
   app.listen(PORT, () => {
